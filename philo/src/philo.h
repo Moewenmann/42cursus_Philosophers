@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/08 16:30:32 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:31:44 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 #  define PHILO_LIMIT_200 1
 # endif
 
+# ifndef TIME_LIMIT_60
+#  define TIME_LIMIT_60 1
+# endif
+
 typedef struct s_philo
 {
 	int				id;
@@ -34,10 +38,11 @@ typedef struct s_philo
 	int				num_philos;
 }				t_philo;
 
-int	parse_args(int argc, char **argv, t_philo *philo);
+t_philo	*parse_args(int argc, char **argv);
+int		philo_abort(u_int8_t is_err, char *err_msg, t_philo *philo);
 
 //utils
-int	ft_atoi(const char *str);
-int	ft_isdigit(int c);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
 
 #endif
