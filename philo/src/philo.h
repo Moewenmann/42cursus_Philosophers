@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/08 16:05:22 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:30:32 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <limits.h>
 
 # ifndef PHILO_LIMIT_200
 #  define PHILO_LIMIT_200 1
@@ -33,5 +35,9 @@ typedef struct s_philo
 }				t_philo;
 
 int	parse_args(int argc, char **argv, t_philo *philo);
+
+//utils
+int	ft_atoi(const char *str);
+int	ft_isdigit(int c);
 
 #endif
