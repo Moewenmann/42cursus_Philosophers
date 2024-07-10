@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/08 17:11:02 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:23:50 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_philo	*philo;
 
 	if (argc != 5 && argc != 6)
-		return (philo_abort(1, "Invalid number of arguments.", NULL));
+		return (philo_abort(1, "Wrong argument count!\n", NULL));
 	philo = parse_args(argc, argv);
 	if (!philo)
 		return (1);

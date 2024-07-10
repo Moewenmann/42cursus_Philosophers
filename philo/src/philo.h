@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/08 17:31:44 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:43:03 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ t_philo	*parse_args(int argc, char **argv);
 int		philo_abort(u_int8_t is_err, char *err_msg, t_philo *philo);
 
 //utils
-int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
+int		phl_atoi(const char *str);
+int		phl_isdigit(int c);
+int		phl_strncmp(const char *s1, const char *s2, size_t n);
+size_t	phl_strlen(const char *c);
 
 #endif
