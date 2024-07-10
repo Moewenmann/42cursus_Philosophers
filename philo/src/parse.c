@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:45 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/10 13:43:56 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:59:07 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_philo	*parse_args(int argc, char **argv)
 
 	(void)argc;
 	if (!check_argv_is_int(argv))
-		return (philo_abort(1, "Wrong argument count!\n", NULL), NULL);
+		return (philo_abort(1, "Invalid argument(s).", NULL), NULL);
 	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		return (philo_abort(1, "Malloc fail.", NULL), NULL);
@@ -75,6 +75,10 @@ static int	check_argv_is_int(char **argv)
 				return (0);
 			j += 1;
 		}
+		if (phl_strlen(argv[i]) > 10
+			|| (phl_strlen(argv[i]) == 10
+				&& phl_strncmp(argv[i], "2147483647", 10)))
+			return (0);
 		i += 1;
 	}
 	return (1);
