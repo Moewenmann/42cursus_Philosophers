@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 13:54:59 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:11:54 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	printf("Time to eat: %zu\n", pdata->time_2_eat);
 	printf("Time to sleep: %zu\n", pdata->time_2_sleep);
 	printf("Number of times to eat: %d\n", pdata->num_times_eat);
+	printf("Start time: %lld\n", pdata->start_time);
 	while (pdata->num_philos)
 	{
 		printf("Philosopher %d\n", pdata->philos[pdata->num_philos - 1].id);
@@ -34,6 +35,7 @@ int	main(int argc, char **argv)
 		printf("Time last ate: %zu\n", pdata->philos[pdata->num_philos - 1].time_last_eat);
 		pdata->num_philos--;
 	}
+	printf("time el: %lld\n", (get_time_current() - pdata->start_time));
 
 	if (pdata)
 		free(pdata);

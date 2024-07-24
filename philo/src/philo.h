@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 14:02:14 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:06:31 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_pdata
 	size_t			time_2_eat;
 	size_t			time_2_sleep;
 	int				num_times_eat;
-	size_t			start_time;
+	long long		start_time;
 	int				num_philos;
 	t_philo			*philos;
 }				t_pdata;
@@ -56,5 +56,8 @@ int		phl_atoi(const char *str);
 int		phl_isdigit(int c);
 int		phl_strncmp(const char *s1, const char *s2, size_t n);
 size_t	phl_strlen(const char *c);
+
+//time
+long long	get_time_current(void);
 
 #endif

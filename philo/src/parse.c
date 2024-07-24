@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:45 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 13:03:27 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:12:00 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_pdata	*parse_args(int argc, char **argv)
 		pdata->num_times_eat = phl_atoi(argv[5]);
 	else
 		pdata->num_times_eat = -1;
+	pdata->start_time = get_time_current();
 	if (check_input_data(pdata))
 		return (NULL);
 	return (pdata);
@@ -57,6 +58,8 @@ static int	check_input_data(t_pdata *pdata)
 	if (pdata->time_2_die <= 0 || pdata->time_2_eat <= 0
 		|| pdata->time_2_sleep <= 0)
 		return (philo_abort(1, "Time values must be greater than 0.", pdata));
+	if (pdata->start_time < 0)
+		return (philo_abort(1, "Time observation failed.", pdata));
 	return (0);
 }
 
