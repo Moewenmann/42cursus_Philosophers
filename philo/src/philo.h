@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 15:06:31 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:31:45 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_pdata
 	int				num_times_eat;
 	long long		start_time;
 	int				num_philos;
+	int				dinner_active;
 	t_philo			*philos;
 }				t_pdata;
 
@@ -59,5 +60,12 @@ size_t	phl_strlen(const char *c);
 
 //time
 long long	get_time_current(void);
+
+//routines
+void	pcreate(t_pdata *pdata);
+void	*philo_routine(void *arg);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	philo_think(t_philo *philo);
 
 #endif

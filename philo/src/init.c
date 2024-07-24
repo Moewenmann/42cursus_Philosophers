@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 13:58:37 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:50:33 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	init_philo(t_pdata *pdata)
 	int	id;
 
 	id = 0;
+	pdata->dinner_active = 1;
 	pdata->philos = malloc(sizeof(t_philo) * pdata->num_philos + 1);
 	while (id < pdata->num_philos)
 	{
@@ -25,6 +26,5 @@ int	init_philo(t_pdata *pdata)
 		pdata->philos[id].time_last_eat = 0;
 		id += 1;
 	}
-	printf("Philosophers initialized.\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 15:11:54 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:09:25 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int argc, char **argv)
 	}
 	printf("time el: %lld\n", (get_time_current() - pdata->start_time));
 
+	pcreate(pdata);
 	if (pdata)
 		free(pdata);
 	return (0);
