@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/10 14:34:16 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:00:33 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 int	main(int argc, char **argv)
 {
-	t_philo	*philo;
-	t_pdata	*data;
+	t_pdata	*pdata;
 
 	if (argc != 5 && argc != 6)
 		return (philo_abort(1, "Wrong argument count!", NULL));
-	philo = parse_args(argc, argv);
-	data = init_pdata(philo);
-	if (!philo)
+	pdata = parse_args(argc, argv);
+	if (!pdata)
 		return (1);
-	if (philo)
-		free(philo);
+	if (pdata)
+		free(pdata);
 	return (0);
 }
 
-int	philo_abort(u_int8_t is_err, char *err_msg, t_philo *philo)
+int	philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata)
 {
-	free(philo);
+	free(pdata);
 	if (is_err)
 	{
 		if (err_msg != NULL)
