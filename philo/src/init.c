@@ -6,19 +6,25 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/10 14:34:58 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:58:37 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_pdata	*init_pdata(t_philo *philo)
+int	init_philo(t_pdata *pdata)
 {
-	t_pdata	*data;
+	int	id;
 
-	data = malloc(sizeof(t_pdata));
-	if (!data)
-		return (philo_abort(1, "Malloc fail.", philo), NULL);
-	data->philos = philo;
-	return (data);
+	id = 0;
+	pdata->philos = malloc(sizeof(t_philo) * pdata->num_philos + 1);
+	while (id < pdata->num_philos)
+	{
+		pdata->philos[id].id = id;
+		pdata->philos[id].num_times_eaten = 0;
+		pdata->philos[id].time_last_eat = 0;
+		id += 1;
+	}
+	printf("Philosophers initialized.\n");
+	return (1);
 }

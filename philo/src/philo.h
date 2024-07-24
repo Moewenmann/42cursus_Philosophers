@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 13:04:10 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:02:14 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ typedef struct s_pdata
 	int				num_times_eat;
 	size_t			start_time;
 	int				num_philos;
-	t_philo		*philos;
+	t_philo			*philos;
 }				t_pdata;
 
 t_pdata	*parse_args(int argc, char **argv);
 int		philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata);
+int		init_philo(t_pdata *pdata);
 
 //utils
 int		phl_atoi(const char *str);

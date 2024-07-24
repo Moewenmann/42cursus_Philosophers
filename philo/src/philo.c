@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 13:00:33 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:54:59 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,22 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (philo_abort(1, "Wrong argument count!", NULL));
 	pdata = parse_args(argc, argv);
-	if (!pdata)
+	if (!pdata || !init_philo(pdata))
 		return (1);
+
+	printf("Number of Philosophers: %d\n", pdata->num_philos);
+	printf("Time to die: %zu\n", pdata->time_2_die);
+	printf("Time to eat: %zu\n", pdata->time_2_eat);
+	printf("Time to sleep: %zu\n", pdata->time_2_sleep);
+	printf("Number of times to eat: %d\n", pdata->num_times_eat);
+	while (pdata->num_philos)
+	{
+		printf("Philosopher %d\n", pdata->philos[pdata->num_philos - 1].id);
+		printf("Number of times eaten: %zu\n", pdata->philos[pdata->num_philos - 1].num_times_eaten);
+		printf("Time last ate: %zu\n", pdata->philos[pdata->num_philos - 1].time_last_eat);
+		pdata->num_philos--;
+	}
+
 	if (pdata)
 		free(pdata);
 	return (0);
