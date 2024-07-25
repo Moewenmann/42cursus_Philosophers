@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 15:50:33 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:28:07 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	init_philo(t_pdata *pdata)
 		pdata->philos[id].id = id;
 		pdata->philos[id].num_times_eaten = 0;
 		pdata->philos[id].time_last_eat = 0;
+		pdata->philos[id].pdata1 = pdata;
 		id += 1;
 	}
 	return (1);

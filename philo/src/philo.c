@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 16:09:25 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:24:12 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 		printf("Time last ate: %zu\n", pdata->philos[pdata->num_philos - 1].time_last_eat);
 		pdata->num_philos--;
 	}
-	printf("time el: %lld\n", (get_time_current() - pdata->start_time));
+	printf("time el: %lld\n---------------------\n", (get_time_current() - pdata->start_time));
 
 	pcreate(pdata);
 	if (pdata)
