@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 14:32:15 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:16:58 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ struct s_philo
 	int				id;
 	size_t			num_times_eaten;
 	size_t			time_last_eat;
-	pthread_t		*thread;
+	pthread_t		thread;
 	t_pdata			*pdata1;
 };
 
@@ -49,6 +49,7 @@ struct s_pdata
 	long long		start_time;
 	int				num_philos;
 	int				dinner_active;
+	pthread_mutex_t	p_lock;
 	t_philo			*philos;
 };
 

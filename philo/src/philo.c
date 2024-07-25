@@ -6,11 +6,13 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 14:24:12 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:19:55 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	philo_1(t_pdata *ph);
 
 int	main(int argc, char **argv)
 {
@@ -28,19 +30,29 @@ int	main(int argc, char **argv)
 	printf("Time to sleep: %zu\n", pdata->time_2_sleep);
 	printf("Number of times to eat: %d\n", pdata->num_times_eat);
 	printf("Start time: %lld\n", pdata->start_time);
-	while (pdata->num_philos)
+	int i = pdata->num_philos;
+	while (i)
 	{
-		printf("Philosopher %d\n", pdata->philos[pdata->num_philos - 1].id);
-		printf("Number of times eaten: %zu\n", pdata->philos[pdata->num_philos - 1].num_times_eaten);
-		printf("Time last ate: %zu\n", pdata->philos[pdata->num_philos - 1].time_last_eat);
-		pdata->num_philos--;
+		printf("Philosopher %d\n", pdata->philos[i - 1].id);
+		printf("Number of times eaten: %zu\n", pdata->philos[i - 1].num_times_eaten);
+		printf("Time last ate: %zu\n", pdata->philos[i - 1].time_last_eat);
+		i--;
 	}
 	printf("time el: %lld\n---------------------\n", (get_time_current() - pdata->start_time));
 
-	pcreate(pdata);
+	if (pdata->num_philos == 1)
+		philo_1(pdata);
+	else
+		pcreate(pdata);
 	if (pdata)
 		free(pdata);
 	return (0);
+}
+
+static void	philo_1(t_pdata *ph)
+{
+	(void)ph;
+	printf("Philosopher %d\n", 1);
 }
 
 int	philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata)
