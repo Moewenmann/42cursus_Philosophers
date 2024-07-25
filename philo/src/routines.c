@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 17:18:58 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:34:47 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,12 @@ void	philo_eat(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
+	long long	start_time;
+
 	printf("Philosopher %d is sleeping.\n", philo->id);
+	start_time = get_time_current();
+	while (get_time_current() - start_time < (long long)philo->pdata1->time_2_sleep)
+		usleep(100);
 }
 
 void	philo_think(t_philo *philo)
