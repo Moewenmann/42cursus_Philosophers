@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 17:16:58 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/28 17:50:09 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ struct s_philo
 	size_t			num_times_eaten;
 	size_t			time_last_eat;
 	pthread_t		thread;
+	pthread_mutex_t	*fork_2t_left;
+	pthread_mutex_t	*fork_2t_right;
 	t_pdata			*pdata1;
 };
 
@@ -49,7 +51,7 @@ struct s_pdata
 	long long		start_time;
 	int				num_philos;
 	int				dinner_active;
-	pthread_mutex_t	p_lock;
+	pthread_mutex_t	*forks;
 	t_philo			*philos;
 };
 

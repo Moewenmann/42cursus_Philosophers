@@ -3,29 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 14:28:07 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/28 17:56:38 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	init_forks(t_pdata *pdata);
 
 int	init_philo(t_pdata *pdata)
 {
 	int	id;
 
 	id = 0;
+	
 	pdata->dinner_active = 1;
 	pdata->philos = malloc(sizeof(t_philo) * pdata->num_philos + 1);
+	if (!pdata->philos || !init_forks(pdata))
+		return (0);
 	while (id < pdata->num_philos)
 	{
 		pdata->philos[id].id = id;
 		pdata->philos[id].num_times_eaten = 0;
 		pdata->philos[id].time_last_eat = 0;
 		pdata->philos[id].pdata1 = pdata;
+		pdata->philos[id].fork_2t_left = &pdata->forks[id];
+		pdata->philos[id].fork_2t_right = &pdata->forks[(id + 1) % pdata->num_philos];
 		id += 1;
+	}
+	return (1);
+}
+
+static int	init_forks(t_pdata *pdata)
+{
+	int	i;
+
+	i = 0;
+	pdata->forks = malloc(sizeof(pthread_mutex_t) * pdata->num_philos + 1);
+	if (!pdata->forks)
+		return (0);
+	while (i < pdata->num_philos)
+	{
+		pthread_mutex_init(&pdata->forks[i], NULL);
+		i += 1;
 	}
 	return (1);
 }
