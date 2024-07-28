@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/28 17:50:09 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:03:14 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ size_t	phl_strlen(const char *c);
 
 //time
 long long	get_time_current(void);
+void		philo_wait(long long sleep_time);
 
 //routines
 void	pcreate(t_pdata *pdata);

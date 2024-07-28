@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routines.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 17:34:47 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:13:20 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,20 @@ void	*philo_routine(void *arg)
 
 void	philo_eat(t_philo *philo)
 {
+	pthread_mutex_lock(philo->fork_2t_left);
+	pthread_mutex_lock(philo->fork_2t_right);
+	philo->time_last_eat = get_time_current();
 	printf("Philosopher %d is eating.\n", philo->id);
+	philo_wait(philo->pdata1->time_2_eat);
+	philo->num_times_eaten += 1;
+	pthread_mutex_unlock(philo->fork_2t_left);
+	pthread_mutex_unlock(philo->fork_2t_right);
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	long long	start_time;
-
 	printf("Philosopher %d is sleeping.\n", philo->id);
-	start_time = get_time_current();
-	while (get_time_current() - start_time < (long long)philo->pdata1->time_2_sleep)
-		usleep(100);
+	philo_wait(philo->pdata1->time_2_sleep);
 }
 
 void	philo_think(t_philo *philo)

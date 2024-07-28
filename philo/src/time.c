@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:06:55 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/24 15:12:23 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:02:50 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,13 @@ long long	get_time_current(void)
 	if(gettimeofday(&tv, NULL))
 		return (-1);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+void	philo_wait(long long sleep_time)
+{
+	long long	start;
+
+	start = get_time_current();
+	while (get_time_current() - start < sleep_time)
+		usleep(100);
 }
