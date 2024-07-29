@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 15:55:27 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 17:42:43 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,27 @@
 
 # ifndef ADD
 #  define ADD 2
+# endif
+
+//philo status codes
+# ifndef DIED
+#  define DIED 0
+# endif
+
+# ifndef FORK
+#  define FORK 1
+# endif
+
+# ifndef EAT
+#  define EAT 2
+# endif
+
+# ifndef SLEEP
+#  define SLEEP 3
+# endif
+
+# ifndef THINK
+#  define THINK 4
 # endif
 
 typedef struct s_philo		t_philo;
@@ -86,6 +107,7 @@ struct s_protect
 	pthread_mutex_t	time_2_sleep;
 	pthread_mutex_t	num_times_eat;
 	pthread_mutex_t	num_philos;
+	pthread_mutex_t	output;
 };
 
 t_pdata	*parse_args(int argc, char **argv);
@@ -112,6 +134,7 @@ void	philo_think(t_philo *philo);
 
 //monitor
 void	*monitor(void *arg);
+void	output_status(t_philo *philo, const int status);
 int		check_alive(t_philo *philo);
 void	philo_died(t_philo *philo);
 

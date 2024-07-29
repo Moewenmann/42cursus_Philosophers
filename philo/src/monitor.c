@@ -6,11 +6,13 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/29 16:54:30 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 17:51:51 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static const char	*pstatus[5];
 
 void	*monitor(void *arg)
 {
@@ -48,6 +50,22 @@ int	check_alive(t_philo *philo)
 void	philo_died(t_philo *philo)
 {
 	gs_dinner_active(philo->pdata1, SET, 0);
-	printf("%lu %d died.\n", log_time(philo->pdata1), philo->id + 1);
+	pthread_mutex_lock(&philo->protect->output);
+	printf("%lu %d %s\n", log_time(philo->pdata1), philo->id + 1, pstatus[DIED]);
 	return ;
 }
+
+void	output_status(t_philo *philo, const int status)
+{
+	if (gs_dinner_active(philo->pdata1, GET, 0))
+		printf("%lu %d %s\n", log_time(philo->pdata1), philo->id + 1, pstatus[status]);
+}
+
+static const char	*pstatus[5] =
+{
+	"died",
+	"has taken a fork",
+	"is eating",
+	"is sleeping",
+	"is thinking",
+};
