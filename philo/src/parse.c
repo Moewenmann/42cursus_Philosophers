@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:45 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 16:05:51 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:50:34 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_pdata	*parse_args(int argc, char **argv)
 		pdata->num_times_eat = phl_atoi(argv[5]);
 	else
 		pdata->num_times_eat = -1;
-	pdata->start_time = get_time_current();
 	if (check_input_data(pdata))
 		return (NULL);
 	return (pdata);

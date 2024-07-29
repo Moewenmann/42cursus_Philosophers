@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 15:54:56 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:53:46 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void	pcreate(t_pdata *pdata)
 	int	id;
 
 	id = 0;
-	pthread_create(&pdata->monitor, NULL, monitor, pdata);
+	pdata->start_time = get_time_current();
 	while (id < get_num_philos(pdata))
 	{
 		pthread_create(&pdata->philos[id].thread, NULL, philo_routine, &pdata->philos[id]);
 		id += 1;
 	}
+	pthread_create(&pdata->monitor, NULL, monitor, pdata);
 	while (id >= 0)
 	{
 		pthread_join(pdata->philos[id].thread, NULL);
@@ -37,22 +38,12 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2)
+		philo_wait(get_time_2_eat(philo->pdata1));
+	while (gs_dinner_active(philo->pdata1, GET, 0))
 	{
-		while (gs_dinner_active(philo->pdata1, GET, 0))
-		{
-			philo_sleep(philo);
-			philo_think(philo);
-			philo_eat(philo);
-		}
-	}
-	else
-	{
-		while (gs_dinner_active(philo->pdata1, GET, 0))
-		{
-			philo_eat(philo);
-			philo_sleep(philo);
-			philo_think(philo);
-		}
+		philo_eat(philo);
+		philo_sleep(philo);
+		philo_think(philo);
 	}
 	return (NULL);
 }
@@ -67,12 +58,10 @@ void	philo_eat(t_philo *philo)
 		return (philo_died(philo));
 	pthread_mutex_lock(philo->fork_2t_right);
 	printf("%lu %d has taken a RIGHT fork.\n", log_time(philo->pdata1), philo->id);
-	if (!check_alive(philo))
-		return (philo_died(philo));
-	gs_time_last_eat(philo, SET, get_time_current());
+	gs_time_last_eat(philo, SET, log_time(philo->pdata1));
 	printf("%lu %d is eating.\n", log_time(philo->pdata1), philo->id);
-	philo_wait(get_time_2_eat(philo->pdata1));
 	gs_num_times_eaten(philo, ADD, 1);
+	philo_wait(get_time_2_eat(philo->pdata1));
 	pthread_mutex_unlock(philo->fork_2t_left);
 	pthread_mutex_unlock(philo->fork_2t_right);
 	printf("%lu %d droped forks\n", log_time(philo->pdata1), philo->id);

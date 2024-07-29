@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:06:55 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 14:52:57 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:44:06 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ unsigned long	get_time_current(void)
 {
 	struct timeval	tv;
 
-	if(gettimeofday(&tv, NULL))
-		return (-1);
+	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 

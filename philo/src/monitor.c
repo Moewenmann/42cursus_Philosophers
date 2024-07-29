@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/29 16:02:35 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:54:30 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	check_alive(t_philo *philo)
 {
 	if ((log_time(philo->pdata1) - gs_time_last_eat(philo, GET, 0)) >= get_time_2_die(philo->pdata1))
 		return (0);
-	(void)philo;
 	return (1);
 }
 
