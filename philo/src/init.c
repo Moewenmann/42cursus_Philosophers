@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 05:11:54 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 15:24:39 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,10 @@ static t_protect	*init_protect(void)
 	if (!protect)
 		return (NULL);
 	pthread_mutex_init(&protect->active, NULL);
+	pthread_mutex_init(&protect->start_time, NULL);
+	pthread_mutex_init(&protect->time_2_die, NULL);
+	pthread_mutex_init(&protect->time_2_eat, NULL);
+	pthread_mutex_init(&protect->time_2_sleep, NULL);
+	pthread_mutex_init(&protect->num_times_eat, NULL);
 	return (protect);
 }

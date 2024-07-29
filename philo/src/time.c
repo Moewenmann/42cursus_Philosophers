@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:06:55 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 04:14:45 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 14:52:57 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned long	get_time_current(void)
 
 unsigned long	log_time(t_pdata *pdata)
 {
-	return (get_time_current() - pdata->start_time);
+	return (get_time_current() - get_start_time(pdata));
 }
 
 void	philo_wait(unsigned long sleep_time)

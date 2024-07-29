@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 05:34:53 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 15:23:58 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ struct s_pdata
 struct s_protect
 {
 	pthread_mutex_t	active;
+	pthread_mutex_t	start_time;
+	pthread_mutex_t	time_2_die;
+	pthread_mutex_t	time_2_eat;
+	pthread_mutex_t	time_2_sleep;
+	pthread_mutex_t	num_times_eat;
 };
 
 t_pdata	*parse_args(int argc, char **argv);
@@ -104,6 +109,11 @@ int		check_alive(t_philo *philo);
 void	philo_died(t_philo *philo);
 
 //get-set -> pdata
-int	gs_dinner_active(t_pdata *pdata, int mode, int val);
+size_t			get_time_2_die(t_pdata *pdata);
+size_t			get_time_2_eat(t_pdata *pdata);
+size_t			get_time_2_sleep(t_pdata *pdata);
+int				get_num_times_eat(t_pdata *pdata);
+int				gs_dinner_active(t_pdata *pdata, int mode, int val);
+unsigned long	get_start_time(t_pdata *pdata);
 
 #endif
