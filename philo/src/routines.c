@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 17:41:55 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:51:45 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2)
-		philo_wait(get_time_2_eat(philo->pdata1));
+	{
+		philo_think(philo);
+	}
 	while (gs_dinner_active(philo->pdata1, GET, 0))
 	{
 		philo_eat(philo);
@@ -57,6 +59,8 @@ void	philo_eat(t_philo *philo)
 	if (!check_alive(philo))
 		return (philo_died(philo));
 	pthread_mutex_lock(philo->fork_2t_right);
+	if (!check_alive(philo))
+		return (philo_died(philo));
 	output_status(philo, FORK);
 	gs_time_last_eat(philo, SET, log_time(philo->pdata1));
 	output_status(philo, EAT);

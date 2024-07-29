@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/29 17:51:51 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:32:51 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,24 @@ int	check_alive(t_philo *philo)
 
 void	philo_died(t_philo *philo)
 {
-	gs_dinner_active(philo->pdata1, SET, 0);
 	pthread_mutex_lock(&philo->protect->output);
-	printf("%lu %d %s\n", log_time(philo->pdata1), philo->id + 1, pstatus[DIED]);
+	if (gs_dinner_active(philo->pdata1, GET, 0))
+		printf("%lu %d %s\n", log_time(philo->pdata1), philo->id + 1, pstatus[DIED]);
+	gs_dinner_active(philo->pdata1, SET, 0);
+	if (philo->fork_2t_left)
+		pthread_mutex_unlock(philo->fork_2t_left);
+	if (philo->fork_2t_right)
+		pthread_mutex_unlock(philo->fork_2t_right);
+	pthread_mutex_unlock(&philo->protect->output);
 	return ;
 }
 
 void	output_status(t_philo *philo, const int status)
 {
+	pthread_mutex_lock(&philo->protect->output);
 	if (gs_dinner_active(philo->pdata1, GET, 0))
 		printf("%lu %d %s\n", log_time(philo->pdata1), philo->id + 1, pstatus[status]);
+	pthread_mutex_unlock(&philo->protect->output);
 }
 
 static const char	*pstatus[5] =
