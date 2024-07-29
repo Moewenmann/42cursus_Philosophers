@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 15:28:47 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 15:54:56 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	pcreate(t_pdata *pdata)
 
 	id = 0;
 	pthread_create(&pdata->monitor, NULL, monitor, pdata);
-	while (id < pdata->num_philos)
+	while (id < get_num_philos(pdata))
 	{
 		pthread_create(&pdata->philos[id].thread, NULL, philo_routine, &pdata->philos[id]);
 		id += 1;
@@ -69,10 +69,10 @@ void	philo_eat(t_philo *philo)
 	printf("%lu %d has taken a RIGHT fork.\n", log_time(philo->pdata1), philo->id);
 	if (!check_alive(philo))
 		return (philo_died(philo));
-	philo->time_last_eat = get_time_current();
+	gs_time_last_eat(philo, SET, get_time_current());
 	printf("%lu %d is eating.\n", log_time(philo->pdata1), philo->id);
 	philo_wait(get_time_2_eat(philo->pdata1));
-	philo->num_times_eaten += 1;
+	gs_num_times_eaten(philo, ADD, 1);
 	pthread_mutex_unlock(philo->fork_2t_left);
 	pthread_mutex_unlock(philo->fork_2t_right);
 	printf("%lu %d droped forks\n", log_time(philo->pdata1), philo->id);

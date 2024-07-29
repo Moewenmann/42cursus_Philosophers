@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 15:23:58 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 15:55:27 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 #  define SET 1
 # endif
 
+# ifndef ADD
+#  define ADD 2
+# endif
+
 typedef struct s_philo		t_philo;
 typedef struct s_pdata		t_pdata;
 typedef struct s_protect	t_protect;
@@ -48,7 +52,9 @@ struct s_philo
 {
 	int				id;
 	size_t			num_times_eaten;
+	pthread_mutex_t	nte_lock;
 	unsigned long	time_last_eat;
+	pthread_mutex_t	tle_lock;
 	pthread_mutex_t	*fork_2t_left;
 	pthread_mutex_t	*fork_2t_right;
 	pthread_t		thread;
@@ -79,6 +85,7 @@ struct s_protect
 	pthread_mutex_t	time_2_eat;
 	pthread_mutex_t	time_2_sleep;
 	pthread_mutex_t	num_times_eat;
+	pthread_mutex_t	num_philos;
 };
 
 t_pdata	*parse_args(int argc, char **argv);
@@ -112,8 +119,13 @@ void	philo_died(t_philo *philo);
 size_t			get_time_2_die(t_pdata *pdata);
 size_t			get_time_2_eat(t_pdata *pdata);
 size_t			get_time_2_sleep(t_pdata *pdata);
+int				get_num_philos(t_pdata *pdata);
 int				get_num_times_eat(t_pdata *pdata);
 int				gs_dinner_active(t_pdata *pdata, int mode, int val);
 unsigned long	get_start_time(t_pdata *pdata);
+
+//get-set -> philo
+unsigned long	gs_time_last_eat(t_philo *philo, int mode, unsigned long val);
+size_t			gs_num_times_eaten(t_philo *philo, int mode, size_t val);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/29 15:25:57 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:02:35 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	*monitor(void *arg)
 			philo_died(pdata->philos);
 		if (get_time_2_eat(pdata) > 0)
 		{
-			while (id < pdata->num_philos)
+			while (id < get_num_philos(pdata))
 			{
-				if (pdata->philos[id].num_times_eaten < (size_t)get_num_times_eat(pdata))
+				if (gs_num_times_eaten(&pdata->philos[id], GET, 0) < (size_t)get_num_times_eat(pdata))
 					break ;
 				id += 1;
 			}
-			if (id == pdata->num_philos)
+			if (id == get_num_philos(pdata))
 				gs_dinner_active(pdata, SET, 0);
 		}
 	}
@@ -40,8 +40,8 @@ void	*monitor(void *arg)
 
 int	check_alive(t_philo *philo)
 {
-	/* if ((log_time(philo->pdata1) - philo->time_last_eat) >= philo->pdata1->time_2_die)
-		return (0); */
+	if ((log_time(philo->pdata1) - gs_time_last_eat(philo, GET, 0)) >= get_time_2_die(philo->pdata1))
+		return (0);
 	(void)philo;
 	return (1);
 }
