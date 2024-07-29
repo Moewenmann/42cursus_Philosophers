@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 04:14:10 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 05:04:31 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@
 #  define TICK 100
 # endif
 
-typedef struct s_philo	t_philo;
-typedef struct s_pdata	t_pdata;
+typedef struct s_philo		t_philo;
+typedef struct s_pdata		t_pdata;
+typedef struct s_protect	t_protect;
 
 struct s_philo
 {
@@ -43,6 +44,7 @@ struct s_philo
 	pthread_mutex_t	*fork_2t_left;
 	pthread_mutex_t	*fork_2t_right;
 	pthread_t		thread;
+	t_protect		*protect;
 	t_pdata			*pdata1;
 };
 
@@ -57,7 +59,13 @@ struct s_pdata
 	int				dinner_active;
 	pthread_mutex_t	*forks;
 	pthread_t		monitor;
+	t_protect		*protect;
 	t_philo			*philos;
+};
+
+struct s_protect
+{
+	pthread_mutex_t	active;
 };
 
 t_pdata	*parse_args(int argc, char **argv);
