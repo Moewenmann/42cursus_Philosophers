@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 02:37:30 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 04:14:10 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 # ifndef TIME_LIMIT_60
 #  define TIME_LIMIT_60 1
+# endif
+
+# ifndef TICK
+#  define TICK 100
 # endif
 
 typedef struct s_philo	t_philo;

@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:06:55 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 02:56:48 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 04:14:45 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	philo_wait(unsigned long sleep_time)
 	if (start < 0 || start <= sleep_time)
 		return ;
 	while (get_time_current() - start < sleep_time)
-		usleep(100);
+		usleep(TICK);
 }
