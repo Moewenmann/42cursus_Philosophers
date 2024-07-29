@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/28 18:03:14 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/28 19:01:01 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ struct s_philo
 	int				id;
 	size_t			num_times_eaten;
 	size_t			time_last_eat;
-	pthread_t		thread;
 	pthread_mutex_t	*fork_2t_left;
 	pthread_mutex_t	*fork_2t_right;
+	pthread_t		thread;
 	t_pdata			*pdata1;
 };
 
@@ -52,6 +52,7 @@ struct s_pdata
 	int				num_philos;
 	int				dinner_active;
 	pthread_mutex_t	*forks;
+	pthread_t		monitor;
 	t_philo			*philos;
 };
 
@@ -75,5 +76,10 @@ void	*philo_routine(void *arg);
 void	philo_eat(t_philo *philo);
 void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
+
+//monitor
+void	*monitor(void *arg);
+int		check_alive(t_philo *philo);
+void	philo_died(t_philo *philo);
 
 #endif

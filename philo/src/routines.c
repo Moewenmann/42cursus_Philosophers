@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/28 18:13:20 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 02:19:24 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	pcreate(t_pdata *pdata)
 	int	id;
 
 	id = 0;
+	pthread_create(&pdata->monitor, NULL, monitor, pdata);
 	while (id < pdata->num_philos)
 	{
 		pthread_create(&pdata->philos[id].thread, NULL, philo_routine, &pdata->philos[id]);
@@ -27,6 +28,7 @@ void	pcreate(t_pdata *pdata)
 		pthread_join(pdata->philos[id].thread, NULL);
 		id -= 1;
 	}
+	pthread_join(pdata->monitor, NULL);
 }
 
 void	*philo_routine(void *arg)
@@ -57,14 +59,23 @@ void	*philo_routine(void *arg)
 
 void	philo_eat(t_philo *philo)
 {
+	if (!check_alive(philo))
+		return (philo_died(philo));
 	pthread_mutex_lock(philo->fork_2t_left);
+	printf("Philosopher %d has taken a LEFT fork.\n", philo->id);
+	if (!check_alive(philo))
+		return (philo_died(philo));
 	pthread_mutex_lock(philo->fork_2t_right);
+	printf("Philosopher %d has taken a RIGHT fork.\n", philo->id);
+	if (!check_alive(philo))
+		return (philo_died(philo));
 	philo->time_last_eat = get_time_current();
-	printf("Philosopher %d is eating.\n", philo->id);
+	printf("%lld Philosopher %d is eating.\n", philo->id);
 	philo_wait(philo->pdata1->time_2_eat);
 	philo->num_times_eaten += 1;
 	pthread_mutex_unlock(philo->fork_2t_left);
 	pthread_mutex_unlock(philo->fork_2t_right);
+	printf("Philosopher %d droped forks\n", philo->id);
 }
 
 void	philo_sleep(t_philo *philo)

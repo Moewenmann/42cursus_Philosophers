@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/28 17:56:38 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/28 21:50:17 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ int	init_philo(t_pdata *pdata)
 		pdata->philos[id].num_times_eaten = 0;
 		pdata->philos[id].time_last_eat = 0;
 		pdata->philos[id].pdata1 = pdata;
+		
 		pdata->philos[id].fork_2t_left = &pdata->forks[id];
+		pthread_mutex_init(pdata->philos[id].fork_2t_left, NULL);
+		
 		pdata->philos[id].fork_2t_right = &pdata->forks[(id + 1) % pdata->num_philos];
+		pthread_mutex_init(pdata->philos[id].fork_2t_right, NULL);
 		id += 1;
 	}
 	return (1);
