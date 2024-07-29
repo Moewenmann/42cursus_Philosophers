@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 02:19:24 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 02:40:44 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,29 @@ void	philo_eat(t_philo *philo)
 	if (!check_alive(philo))
 		return (philo_died(philo));
 	pthread_mutex_lock(philo->fork_2t_left);
-	printf("Philosopher %d has taken a LEFT fork.\n", philo->id);
+	printf("%lu %d has taken a LEFT fork.\n", log_time(philo->pdata1), philo->id);
 	if (!check_alive(philo))
 		return (philo_died(philo));
 	pthread_mutex_lock(philo->fork_2t_right);
-	printf("Philosopher %d has taken a RIGHT fork.\n", philo->id);
+	printf("%lu %d has taken a RIGHT fork.\n", log_time(philo->pdata1), philo->id);
 	if (!check_alive(philo))
 		return (philo_died(philo));
 	philo->time_last_eat = get_time_current();
-	printf("%lld Philosopher %d is eating.\n", philo->id);
+	printf("%lu %d is eating.\n", log_time(philo->pdata1), philo->id);
 	philo_wait(philo->pdata1->time_2_eat);
 	philo->num_times_eaten += 1;
 	pthread_mutex_unlock(philo->fork_2t_left);
 	pthread_mutex_unlock(philo->fork_2t_right);
-	printf("Philosopher %d droped forks\n", philo->id);
+	printf("%lu %d droped forks\n", log_time(philo->pdata1), philo->id);
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	printf("Philosopher %d is sleeping.\n", philo->id);
+	printf("%lu %d is sleeping.\n", log_time(philo->pdata1), philo->id);
 	philo_wait(philo->pdata1->time_2_sleep);
 }
 
 void	philo_think(t_philo *philo)
 {
-	printf("Philosopher %d is thinking.\n", philo->id);
+	printf("%lu %d is thinking.\n", log_time(philo->pdata1), philo->id);
 }

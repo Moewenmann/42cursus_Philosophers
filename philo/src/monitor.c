@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/29 02:20:38 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 02:28:58 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_alive(t_philo *philo)
 
 void	philo_died(t_philo *philo)
 {
-	printf("%lld %d died\n", get_time_current() - philo->pdata1->start_time, philo->id + 1);
+	printf("%lu %d died\n", get_time_current() - philo->pdata1->start_time, philo->id + 1);
 	(void)philo;
 	return ;
 }

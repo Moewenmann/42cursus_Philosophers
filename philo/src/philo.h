@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/28 19:01:01 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 02:37:30 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ struct s_philo
 {
 	int				id;
 	size_t			num_times_eaten;
-	size_t			time_last_eat;
+	unsigned long	time_last_eat;
 	pthread_mutex_t	*fork_2t_left;
 	pthread_mutex_t	*fork_2t_right;
 	pthread_t		thread;
@@ -48,7 +48,7 @@ struct s_pdata
 	size_t			time_2_eat;
 	size_t			time_2_sleep;
 	int				num_times_eat;
-	long long		start_time;
+	unsigned long	start_time;
 	int				num_philos;
 	int				dinner_active;
 	pthread_mutex_t	*forks;
@@ -67,8 +67,9 @@ int		phl_strncmp(const char *s1, const char *s2, size_t n);
 size_t	phl_strlen(const char *c);
 
 //time
-long long	get_time_current(void);
-void		philo_wait(long long sleep_time);
+unsigned long	get_time_current(void);
+unsigned long	log_time(t_pdata *pdata);
+void			philo_wait(unsigned long sleep_time);
 
 //routines
 void	pcreate(t_pdata *pdata);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/25 17:19:55 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/29 02:27:53 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	if (!pdata || !init_philo(pdata))
 		return (1);
 
-	printf("Number of Philosophers: %d\n", pdata->num_philos);
+/* 	printf("Number of Philosophers: %d\n", pdata->num_philos);
 	printf("Time to die: %zu\n", pdata->time_2_die);
 	printf("Time to eat: %zu\n", pdata->time_2_eat);
 	printf("Time to sleep: %zu\n", pdata->time_2_sleep);
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		printf("Time last ate: %zu\n", pdata->philos[i - 1].time_last_eat);
 		i--;
 	}
-	printf("time el: %lld\n---------------------\n", (get_time_current() - pdata->start_time));
+	printf("time el: %lld\n---------------------\n", (get_time_current() - pdata->start_time)); */
 
 	if (pdata->num_philos == 1)
 		philo_1(pdata);
