@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 02:40:44 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 05:42:12 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2)
 	{
-		while (philo->pdata1->dinner_active)
+		while (gs_dinner_active(philo->pdata1, GET, 0))
 		{
 			philo_sleep(philo);
 			philo_think(philo);
@@ -47,7 +47,7 @@ void	*philo_routine(void *arg)
 	}
 	else
 	{
-		while (philo->pdata1->dinner_active)
+		while (gs_dinner_active(philo->pdata1, GET, 0))
 		{
 			philo_eat(philo);
 			philo_sleep(philo);

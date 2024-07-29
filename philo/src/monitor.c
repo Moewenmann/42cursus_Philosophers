@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/29 04:39:13 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 05:39:15 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*monitor(void *arg)
 	t_pdata	*pdata;
 
 	pdata = (t_pdata *)arg;
-	while (pdata->dinner_active)
+	while (gs_dinner_active(pdata, GET, 0))
 	{
 		id = 0;
 		if (!check_alive(&pdata->philos[id]))
@@ -32,7 +32,7 @@ void	*monitor(void *arg)
 				id += 1;
 			}
 			if (id == pdata->num_philos)
-				pdata->dinner_active = 0;
+				gs_dinner_active(pdata, SET, 0);
 		}
 	}
 	return (NULL);
@@ -48,7 +48,7 @@ int	check_alive(t_philo *philo)
 
 void	philo_died(t_philo *philo)
 {
-	printf("%lu %d died\n", get_time_current() - philo->pdata1->start_time, philo->id + 1);
-	philo->pdata1->dinner_active = 0;
+	gs_dinner_active(philo->pdata1, SET, 0);
+	printf("%lu %d died.\n", log_time(philo->pdata1), philo->id + 1);
 	return ;
 }

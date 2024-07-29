@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 05:04:31 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/29 05:34:53 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@
 
 # ifndef TICK
 #  define TICK 100
+# endif
+
+# ifndef GET
+#  define GET 0
+# endif
+
+# ifndef SET
+#  define SET 1
 # endif
 
 typedef struct s_philo		t_philo;
@@ -94,5 +102,8 @@ void	philo_think(t_philo *philo);
 void	*monitor(void *arg);
 int		check_alive(t_philo *philo);
 void	philo_died(t_philo *philo);
+
+//get-set -> pdata
+int	gs_dinner_active(t_pdata *pdata, int mode, int val);
 
 #endif
