@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 17:42:43 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 16:31:11 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,15 @@ struct s_protect
 	pthread_mutex_t	output;
 };
 
-t_pdata	*parse_args(int argc, char **argv);
-int		philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata);
-int		init_philo(t_pdata *pdata);
+t_pdata			*parse_args(int argc, char **argv);
+int				philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata);
+int				init_philo(t_pdata *pdata);
 
 //utils
-int		phl_atoi(const char *str);
-int		phl_isdigit(int c);
-int		phl_strncmp(const char *s1, const char *s2, size_t n);
-size_t	phl_strlen(const char *c);
+int				phl_atoi(const char *str);
+int				phl_isdigit(int c);
+int				phl_strncmp(const char *s1, const char *s2, size_t n);
+size_t			phl_strlen(const char *c);
 
 //time
 unsigned long	get_time_current(void);
@@ -126,17 +126,17 @@ unsigned long	log_time(t_pdata *pdata);
 void			philo_wait(unsigned long sleep_time);
 
 //routines
-void	pcreate(t_pdata *pdata);
-void	*philo_routine(void *arg);
-void	philo_eat(t_philo *philo);
-void	philo_sleep(t_philo *philo);
-void	philo_think(t_philo *philo);
+void			pcreate(t_pdata *pdata);
+void			*philo_routine(void *arg);
+void			philo_eat(t_philo *philo);
+void			philo_sleep(t_philo *philo);
+void			philo_think(t_philo *philo);
 
 //monitor
-void	*monitor(void *arg);
-void	output_status(t_philo *philo, const int status);
-int		check_alive(t_philo *philo);
-void	philo_died(t_philo *philo);
+void			*monitor(void *arg);
+void			output_status(t_philo *philo, const int status);
+int				check_alive(t_philo *philo);
+void			philo_died(t_philo *philo);
 
 //get-set -> pdata
 size_t			get_time_2_die(t_pdata *pdata);
