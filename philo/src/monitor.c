@@ -6,13 +6,13 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/30 16:38:49 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:57:23 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static const char	*pstatus[5];
+static char	*pstatus(u_int8_t status);
 
 void	*monitor(void *arg)
 {
@@ -54,7 +54,7 @@ void	philo_died(t_philo *philo)
 	pthread_mutex_lock(&philo->protect->output);
 	if (gs_dinner_active(philo->pdata1, GET, 0))
 		printf("%lu %d %s\n", log_time(philo->pdata1),
-			philo->id + 1, pstatus[DIED]);
+			philo->id + 1, pstatus(DIED));
 	gs_dinner_active(philo->pdata1, SET, 0);
 	if (philo->fork_2t_left)
 		pthread_mutex_unlock(philo->fork_2t_left);
@@ -69,15 +69,18 @@ void	output_status(t_philo *philo, const int status)
 	pthread_mutex_lock(&philo->protect->output);
 	if (gs_dinner_active(philo->pdata1, GET, 0))
 		printf("%lu %d %s\n", log_time(philo->pdata1),
-			philo->id + 1, pstatus[status]);
+			philo->id + 1, pstatus(status));
 	pthread_mutex_unlock(&philo->protect->output);
 }
 
-static const char	*pstatus[5] =
+static char	*pstatus(u_int8_t status)
 {
-	"died",
-	"has taken a fork",
-	"is eating",
-	"is sleeping",
-	"is thinking",
-};
+	const char	*status_str[]
+		= {"died",
+		"has taken a fork",
+		"is eating",
+		"is sleeping",
+		"is thinking"};
+
+	return ((char *)status_str[status]);
+}
