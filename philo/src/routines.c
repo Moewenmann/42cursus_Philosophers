@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 16:32:15 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:44:32 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	pcreate(t_pdata *pdata)
 	pthread_create(&pdata->monitor, NULL, monitor, pdata);
 	while (id < get_num_philos(pdata))
 	{
-		pthread_create(&pdata->philos[id].thread, NULL, philo_routine, &pdata->philos[id]);
+		pthread_create(&pdata->philos[id].thread,
+			NULL, philo_routine, &pdata->philos[id]);
 		id += 1;
 	}
 	while (id >= 0)

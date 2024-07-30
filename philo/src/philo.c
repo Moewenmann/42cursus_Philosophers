@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 15:58:38 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:40:27 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,6 @@ int	main(int argc, char **argv)
 	pdata = parse_args(argc, argv);
 	if (!pdata || !init_philo(pdata))
 		return (philo_abort(1, NULL, pdata));
-
-/* 	printf("Number of Philosophers: %d\n", pdata->num_philos);
-	printf("Time to die: %zu\n", pdata->time_2_die);
-	printf("Time to eat: %zu\n", pdata->time_2_eat);
-	printf("Time to sleep: %zu\n", pdata->time_2_sleep);
-	printf("Number of times to eat: %d\n", pdata->num_times_eat);
-	printf("Start time: %lld\n", pdata->start_time);
-	int i = pdata->num_philos;
-	while (i)
-	{
-		printf("Philosopher %d\n", pdata->philos[i - 1].id);
-		printf("Number of times eaten: %zu\n", pdata->philos[i - 1].num_times_eaten);
-		printf("Time last ate: %zu\n", pdata->philos[i - 1].time_last_eat);
-		i--;
-	}
-	printf("time el: %lld\n---------------------\n", (get_time_current() - pdata->start_time)); */
-
 	pcreate(pdata);
 	if (pdata)
 		philo_exit(pdata);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 12:02:15 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 16:36:12 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	init_philo(t_pdata *pdata)
 		pdata->philos[id].protect = pdata->protect;
 		pdata->philos[id].fork_2t_left = &pdata->forks[id];
 		pthread_mutex_init(pdata->philos[id].fork_2t_left, NULL);
-		pdata->philos[id].fork_2t_right = &pdata->forks[(id + 1) % pdata->num_philos];
+		pdata->philos[id].fork_2t_right
+			= &pdata->forks[(id + 1) % pdata->num_philos];
 		pthread_mutex_init(pdata->philos[id].fork_2t_right, NULL);
 		id += 1;
 	}

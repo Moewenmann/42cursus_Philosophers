@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:45 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 16:50:34 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 16:39:57 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ t_pdata	*parse_args(int argc, char **argv)
 
 static int	check_input_data(t_pdata *pdata)
 {
-	// if (pdata->num_philos < 2)
-	// 	return (philo_abort(1, "Number of Philosophers must be at least 2.",
-	// 			pdata));
 	if (pdata->num_philos > 200 && PHILO_LIMIT_200)
 		return (philo_abort(1, "Number of Philosophers must be at most 200.",
 				pdata));
