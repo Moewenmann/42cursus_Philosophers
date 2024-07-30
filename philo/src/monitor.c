@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/30 16:57:23 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:31:07 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ void	philo_died(t_philo *philo)
 		printf("%lu %d %s\n", log_time(philo->pdata1),
 			philo->id + 1, pstatus(DIED));
 	gs_dinner_active(philo->pdata1, SET, 0);
-	if (philo->fork_2t_left)
-		pthread_mutex_unlock(philo->fork_2t_left);
-	if (philo->fork_2t_right)
-		pthread_mutex_unlock(philo->fork_2t_right);
 	pthread_mutex_unlock(&philo->protect->output);
 	return ;
 }

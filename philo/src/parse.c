@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:45 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 16:39:57 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:32:01 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static int	check_input_data(t_pdata *pdata)
 	if (pdata->time_2_die <= 0 || pdata->time_2_eat <= 0
 		|| pdata->time_2_sleep <= 0)
 		return (philo_abort(1, "Time values must be greater than 0.", pdata));
-	if (pdata->start_time < 0)
-		return (philo_abort(1, "Time observation failed.", pdata));
 	return (0);
 }
 

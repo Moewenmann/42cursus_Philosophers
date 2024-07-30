@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:06:55 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 16:44:06 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:16:39 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	philo_wait(unsigned long sleep_time)
 	unsigned long	start;
 
 	start = get_time_current();
-	if (start < 0 || start <= sleep_time)
+	if (start <= 0 || start <= sleep_time)
 		return ;
 	while (get_time_current() - start < sleep_time)
 		usleep(TICK);

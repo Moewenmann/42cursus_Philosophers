@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 16:40:27 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:33:04 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (philo_abort(1, "Wrong argument count!", NULL));
 	pdata = parse_args(argc, argv);
-	if (!pdata || !init_philo(pdata))
+	if (!pdata)
+		return (1);
+	if (!init_philo(pdata))
 		return (philo_abort(1, NULL, pdata));
 	pcreate(pdata);
 	if (pdata)
@@ -53,8 +55,6 @@ static int	philo_exit(t_pdata *pdata)
 	{
 		pthread_mutex_destroy(&pdata->philos[id].nte_lock);
 		pthread_mutex_destroy(&pdata->philos[id].tle_lock);
-		pthread_mutex_destroy(pdata->philos[id].fork_2t_left);
-		pthread_mutex_destroy(pdata->philos[id].fork_2t_right);
 		pthread_mutex_destroy(&pdata->forks[id]);
 		id += 1;
 	}

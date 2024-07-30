@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 16:44:32 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:28:08 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	pcreate(t_pdata *pdata)
 			NULL, philo_routine, &pdata->philos[id]);
 		id += 1;
 	}
+	id -= 1;
 	while (id >= 0)
 	{
 		pthread_join(pdata->philos[id].thread, NULL);
@@ -59,10 +60,17 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(philo->fork_2t_left);
 	output_status(philo, FORK);
 	if (!check_alive(philo))
+	{
+		pthread_mutex_unlock(philo->fork_2t_left);
 		return (philo_died(philo));
+	}
 	pthread_mutex_lock(philo->fork_2t_right);
 	if (!check_alive(philo))
+	{
+		pthread_mutex_unlock(philo->fork_2t_left);
+		pthread_mutex_unlock(philo->fork_2t_right);
 		return (philo_died(philo));
+	}
 	output_status(philo, FORK);
 	gs_time_last_eat(philo, SET, log_time(philo->pdata1));
 	output_status(philo, EAT);
