@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 12:09:14 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:58:38 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	philo_1(t_pdata *ph);
 static int	philo_exit(t_pdata *pdata);
 
 int	main(int argc, char **argv)
@@ -41,19 +40,10 @@ int	main(int argc, char **argv)
 	}
 	printf("time el: %lld\n---------------------\n", (get_time_current() - pdata->start_time)); */
 
-	if (pdata->num_philos == 1)
-		philo_1(pdata);
-	else
-		pcreate(pdata);
+	pcreate(pdata);
 	if (pdata)
 		philo_exit(pdata);
 	return (0);
-}
-
-static void	philo_1(t_pdata *ph)
-{
-	(void)ph;
-	printf("Philosopher %d\n", 1);
 }
 
 int	philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata)
