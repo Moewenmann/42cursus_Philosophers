@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 11:46:24 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 12:09:14 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		return (philo_abort(1, "Wrong argument count!", NULL));
 	pdata = parse_args(argc, argv);
 	if (!pdata || !init_philo(pdata))
-		return (1);
+		return (philo_abort(1, NULL, pdata));
 
 /* 	printf("Number of Philosophers: %d\n", pdata->num_philos);
 	printf("Time to die: %zu\n", pdata->time_2_die);
@@ -58,7 +58,8 @@ static void	philo_1(t_pdata *ph)
 
 int	philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata)
 {
-	free(pdata);
+	if (pdata)
+		free(pdata);
 	if (is_err)
 	{
 		if (err_msg != NULL)

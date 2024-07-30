@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 17:38:25 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 12:02:15 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	init_philo(t_pdata *pdata)
 	id = 0;
 	pdata->dinner_active = 1;
 	pdata->philos = malloc(sizeof(t_philo) * pdata->num_philos + 1);
-	if (!pdata->philos || !init_forks(pdata))
+	if (!pdata->philos)
 		return (0);
 	pdata->protect = init_protect(pdata);
-	if (!pdata->protect)
-		return (0);
+	if (!pdata->protect || !init_forks(pdata))
+		return (free(pdata->philos), 0);
 	while (id < pdata->num_philos)
 	{
 		pdata->philos[id].id = id;
