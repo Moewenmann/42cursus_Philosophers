@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 18:51:45 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 14:09:34 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	pcreate(t_pdata *pdata)
 
 	id = 0;
 	pdata->start_time = get_time_current();
+	pthread_create(&pdata->monitor, NULL, monitor, pdata);
 	while (id < get_num_philos(pdata))
 	{
 		pthread_create(&pdata->philos[id].thread, NULL, philo_routine, &pdata->philos[id]);
 		id += 1;
 	}
-	pthread_create(&pdata->monitor, NULL, monitor, pdata);
 	while (id >= 0)
 	{
 		pthread_join(pdata->philos[id].thread, NULL);
@@ -40,6 +40,7 @@ void	*philo_routine(void *arg)
 	if (philo->id % 2)
 	{
 		philo_think(philo);
+		philo_wait(get_time_2_eat(philo->pdata1));
 	}
 	while (gs_dinner_active(philo->pdata1, GET, 0))
 	{

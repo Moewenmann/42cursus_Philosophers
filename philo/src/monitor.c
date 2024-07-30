@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/29 18:32:51 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 14:17:36 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	*monitor(void *arg)
 	{
 		id = 0;
 		if (!check_alive(&pdata->philos[id]))
-			philo_died(pdata->philos);
-		if (get_time_2_eat(pdata) > 0)
+			philo_died(&pdata->philos[id]);
+		if (get_num_times_eat(pdata) > 0)
 		{
 			while (id < get_num_philos(pdata))
 			{
-				if (gs_num_times_eaten(&pdata->philos[id], GET, 0) < (size_t)get_num_times_eat(pdata))
+				if (gs_num_times_eaten(&pdata->philos[id], GET, 0) <= (size_t)get_num_times_eat(pdata))
 					break ;
 				id += 1;
 			}
