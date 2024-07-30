@@ -6,13 +6,14 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/29 02:27:53 by julian           ###   ########.fr       */
+/*   Updated: 2024/07/30 11:46:24 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static void	philo_1(t_pdata *ph);
+static int	philo_exit(t_pdata *pdata);
 
 int	main(int argc, char **argv)
 {
@@ -45,7 +46,7 @@ int	main(int argc, char **argv)
 	else
 		pcreate(pdata);
 	if (pdata)
-		free(pdata);
+		philo_exit(pdata);
 	return (0);
 }
 
@@ -67,4 +68,33 @@ int	philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata)
 		return (1);
 	}
 	return (0);
+}
+
+static int	philo_exit(t_pdata *pdata)
+{
+	int	id;
+
+	id = 0;
+	while (id < pdata->num_philos)
+	{
+		pthread_mutex_destroy(&pdata->philos[id].nte_lock);
+		pthread_mutex_destroy(&pdata->philos[id].tle_lock);
+		pthread_mutex_destroy(pdata->philos[id].fork_2t_left);
+		pthread_mutex_destroy(pdata->philos[id].fork_2t_right);
+		pthread_mutex_destroy(&pdata->forks[id]);
+		id += 1;
+	}
+	pthread_mutex_destroy(&pdata->protect->active);
+	pthread_mutex_destroy(&pdata->protect->start_time);
+	pthread_mutex_destroy(&pdata->protect->time_2_die);
+	pthread_mutex_destroy(&pdata->protect->time_2_eat);
+	pthread_mutex_destroy(&pdata->protect->time_2_sleep);
+	pthread_mutex_destroy(&pdata->protect->num_times_eat);
+	pthread_mutex_destroy(&pdata->protect->num_philos);
+	pthread_mutex_destroy(&pdata->protect->output);
+	free(pdata->philos);
+	free(pdata->protect);
+	free(pdata->forks);
+	free(pdata);
+	return (1);
 }
