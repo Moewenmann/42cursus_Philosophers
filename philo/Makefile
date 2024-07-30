@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julian <julian@student.42.fr>              +#+  +:+       +#+         #
+#    By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 11:06:29 by julian            #+#    #+#              #
-#    Updated: 2024/07/30 11:28:56 by julian           ###   ########.fr        #
+#    Updated: 2024/07/30 16:50:38 by jmuhlber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= philo
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -Werror -I inc
+CFLAGS	= -Wall -Wextra -Werror -I inc -g
 
 OBJDIR	= obj
 
@@ -27,8 +27,8 @@ SRC		= philo.c \
 			routines.c \
 			monitor.c \
 			time.c \
-			var_pdata.c \
-			var_philo.c \
+			var_a.c \
+			var_b.c \
 			util.c
 
 OBJ		= $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
