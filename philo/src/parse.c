@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:45 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 17:32:01 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:13:19 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 static int	check_input_data(t_pdata *pdata);
 static int	check_argv_is_int(char **argv);
 
+/**
+ * Parses command-line arguments to initialize the program data structure.
+ * 
+ * @param argc The number of command-line arguments.
+ * @param argv Array of command-line argument strings.
+ * @return Pointer to the initialized program data structure,
+ * or NULL if an error occurs.
+ */
 t_pdata	*parse_args(int argc, char **argv)
 {
 	t_pdata	*pdata;
@@ -38,6 +46,14 @@ t_pdata	*parse_args(int argc, char **argv)
 	return (pdata);
 }
 
+/**
+ * Validates the input data for the philosophers.
+ * 
+ * @param pdata Pointer to the program data structure containing
+ * the input parameters.
+ * @return Returns 0 if all input data is valid, otherwise aborts
+ * the program with an appropriate error message and returns 1.
+ */
 static int	check_input_data(t_pdata *pdata)
 {
 	if (pdata->num_philos > 200 && PHILO_LIMIT_200)
@@ -57,6 +73,12 @@ static int	check_input_data(t_pdata *pdata)
 	return (0);
 }
 
+/**
+ * Checks if all command-line arguments are valid integers.
+ * 
+ * @param argv Array of command-line argument strings.
+ * @return Returns 1 if all arguments are valid integers, otherwise returns 0.
+ */
 static int	check_argv_is_int(char **argv)
 {
 	int	i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:22:18 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 16:36:12 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:18:00 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 static int			init_forks(t_pdata *pdata);
 static t_protect	*init_protect(t_pdata *pdata);
 
+/**
+ * Initializes the philosopher data structures.
+ * 
+ * @param pdata Pointer to the program data structure containing
+ * philo parameters.
+ * @return Returns 1 if initialization is successful, otherwise returns 0.
+ */
 int	init_philo(t_pdata *pdata)
 {
 	int	id;
@@ -44,6 +51,13 @@ int	init_philo(t_pdata *pdata)
 	return (1);
 }
 
+/**
+ * Initializes the forks (mutexes) for the philosophers.
+ * 
+ * @param pdata Pointer to the program data structure
+ * containing philo parameters.
+ * @return Returns 1 if initialization is successful, otherwise returns 0.
+ */
 static int	init_forks(t_pdata *pdata)
 {
 	int	i;
@@ -60,6 +74,14 @@ static int	init_forks(t_pdata *pdata)
 	return (1);
 }
 
+/**
+ * Initializes the protection structures (mutexes) for the philosophers.
+ * 
+ * @param pdata Pointer to the program data structure
+ * containing philo parameters.
+ * @return Pointer to the initialized protection structure,
+ * or NULL if an error occurs.
+ */
 static t_protect	*init_protect(t_pdata *pdata)
 {
 	int			id;

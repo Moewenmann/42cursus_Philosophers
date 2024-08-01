@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/08/01 02:59:55 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/01 12:42:21 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+/**
+ * Aborts the philosopher program based on an error condition.
+ * 
+ * @param is_err Indicator if an error occurred.
+ * @param err_msg Optional error message to display if an error occurred.
+ * @param pdata Pointer to dynamically allocated data that should be freed.
+ * @return Returns 1 if an error message was printed, otherwise returns 0.
+ */
 int	philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata)
 {
 	if (pdata)
@@ -50,6 +58,14 @@ int	philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata)
 	return (0);
 }
 
+/**
+ * Cleans up and exits the philosopher program by destroying mutexes and
+ * freeing allocated memory.
+ * 
+ * @param pdata Pointer to the program data structure containing philosophers,
+ * forks, and protection structures.
+ * @return Always returns 1 after cleanup is complete.
+ */
 static int	philo_exit(t_pdata *pdata)
 {
 	int	id;
@@ -77,6 +93,11 @@ static int	philo_exit(t_pdata *pdata)
 	return (1);
 }
 
+/**
+ * Just one philosopher.
+ * 
+ * @param ph Pointer to the program data structure.
+ */
 static void	philo_1(t_pdata *ph)
 {
 	ph->start_time = get_time_current();
