@@ -6,12 +6,15 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/08/01 03:00:49 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/01 14:02:24 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+//_--------------------------------------------------------------------------_//
+// ** ---------------------------- LIBRARIES ---------------------------- ** //
 
 # include <pthread.h>
 # include <unistd.h>
@@ -20,50 +23,8 @@
 # include <limits.h>
 # include <sys/time.h>
 
-# ifndef PHILO_LIMIT_200
-#  define PHILO_LIMIT_200 1
-# endif
-
-# ifndef TIME_LIMIT_60
-#  define TIME_LIMIT_60 1
-# endif
-
-# ifndef TICK
-#  define TICK 100
-# endif
-
-# ifndef GET
-#  define GET 0
-# endif
-
-# ifndef SET
-#  define SET 1
-# endif
-
-# ifndef ADD
-#  define ADD 2
-# endif
-
-//philo status codes
-# ifndef DIED
-#  define DIED 0
-# endif
-
-# ifndef FORK
-#  define FORK 1
-# endif
-
-# ifndef EAT
-#  define EAT 2
-# endif
-
-# ifndef SLEEP
-#  define SLEEP 3
-# endif
-
-# ifndef THINK
-#  define THINK 4
-# endif
+//_--------------------------------------------------------------------------_//
+// ** ----------------------------- STRUCTS ----------------------------- ** //
 
 typedef struct s_philo		t_philo;
 typedef struct s_pdata		t_pdata;
@@ -110,6 +71,9 @@ struct s_protect
 	pthread_mutex_t	output;
 };
 
+//_--------------------------------------------------------------------------_//
+// ** ---------------------------- FUNCTIONS ---------------------------- ** //
+
 t_pdata			*parse_args(int argc, char **argv);
 int				philo_abort(u_int8_t is_err, char *err_msg, t_pdata *pdata);
 int				init_philo(t_pdata *pdata);
@@ -150,5 +114,33 @@ unsigned long	get_start_time(t_pdata *pdata);
 //get-set -> philo
 unsigned long	gs_time_last_eat(t_philo *philo, int mode, unsigned long val);
 size_t			gs_num_times_eaten(t_philo *philo, int mode, size_t val);
+
+//_--------------------------------------------------------------------------_//
+// ** ----------------------------- MACROS ------------------------------ ** //
+
+//philo limits
+# ifndef PHILO_LIMIT_200
+#  define PHILO_LIMIT_200 1
+# endif
+
+# ifndef TIME_LIMIT_60
+#  define TIME_LIMIT_60 1
+# endif
+
+# ifndef TICK
+#  define TICK 100
+# endif
+
+//philo get-set modes
+# define GET 0
+# define SET 1
+# define ADD 2
+
+//philo status codes
+# define DIED 0
+# define FORK 1
+# define EAT 2
+# define SLEEP 3
+# define THINK 4
 
 #endif
