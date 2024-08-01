@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/08/01 14:02:24 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/02 00:26:50 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void			philo_think(t_philo *philo);
 void			*monitor(void *arg);
 void			output_status(t_philo *philo, const int status);
 int				check_alive(t_philo *philo);
+void			check_all_alive(t_pdata *pdata);
 void			philo_died(t_philo *philo);
 
 //get-set -> pdata
