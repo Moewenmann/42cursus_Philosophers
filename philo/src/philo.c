@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 17:33:04 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/01 02:59:55 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static int	philo_exit(t_pdata *pdata);
+static void	philo_1(t_pdata *ph);
 
 int	main(int argc, char **argv)
 {
@@ -25,7 +26,10 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_philo(pdata))
 		return (philo_abort(1, NULL, pdata));
-	pcreate(pdata);
+	if (pdata->num_philos == 1)
+		philo_1(pdata);
+	else
+		pcreate(pdata);
 	if (pdata)
 		philo_exit(pdata);
 	return (0);
@@ -71,4 +75,12 @@ static int	philo_exit(t_pdata *pdata)
 	free(pdata->forks);
 	free(pdata);
 	return (1);
+}
+
+static void	philo_1(t_pdata *ph)
+{
+	ph->start_time = get_time_current();
+	output_status(&ph->philos[0], FORK);
+	philo_wait(ph->time_2_die);
+	output_status(&ph->philos[0], DIED);
 }

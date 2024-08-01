@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/07/31 14:23:01 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/01 03:00:30 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	*monitor(void *arg)
 	while (gs_dinner_active(pdata, GET, 0))
 	{
 		id = 0;
-		if (all_live_check(pdata) != -1)
-			philo_died(&pdata->philos[all_live_check(pdata)]);
 		if (get_num_times_eat(pdata) > 0)
 		{
 			while (id < get_num_philos(pdata))

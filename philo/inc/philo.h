@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/31 14:05:04 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/01 03:00:49 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ void			*monitor(void *arg);
 void			output_status(t_philo *philo, const int status);
 int				check_alive(t_philo *philo);
 void			philo_died(t_philo *philo);
-int				all_live_check(t_pdata *pdata);
 
 //get-set -> pdata
 size_t			get_time_2_die(t_pdata *pdata);
