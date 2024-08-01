@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:10:12 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/10 13:41:56 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:29:15 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static int	phl_check_space(const char *str);
 
+/**
+ * Converts a string to an integer.
+ * 
+ * @param str The string to convert.
+ * @return The converted integer value, or INT_MAX/INT_MIN in case of overflow.
+ */
 int	phl_atoi(const char *str)
 {
 	long	res;
@@ -43,6 +49,12 @@ int	phl_atoi(const char *str)
 	return ((int)(res * prefix));
 }
 
+/**
+ * Checks if a character is a digit.
+ * 
+ * @param c The character to check.
+ * @return Returns 1 if the character is a digit, otherwise returns 0.
+ */
 int	phl_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
@@ -51,6 +63,15 @@ int	phl_isdigit(int c)
 		return (0);
 }
 
+/**
+ * Compares two strings up to a specified number of characters.
+ * 
+ * @param s1 The first string to compare.
+ * @param s2 The second string to compare.
+ * @param n The maximum number of characters to compare.
+ * @return Returns 0 if the strings are equal, otherwise
+ * returns the difference between the first differing characters.
+ */
 int	phl_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t				i;
@@ -71,6 +92,12 @@ int	phl_strncmp(const char *s1, const char *s2, size_t n)
 	return (*s1_uns - *s2_uns);
 }
 
+/**
+ * Computes the length of a string.
+ * 
+ * @param c The string to measure.
+ * @return The length of the string.
+ */
 size_t	phl_strlen(const char *c)
 {
 	size_t	len;

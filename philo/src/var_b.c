@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var_philo.c                                        :+:      :+:    :+:   */
+/*   var_b.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 05:17:47 by julian            #+#    #+#             */
-/*   Updated: 2024/07/30 16:49:29 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:39:26 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Gets or sets the last eating time for a philosopher.
+ * 
+ * @param philo Pointer to the philosopher structure.
+ * @param mode If non-zero, sets the time_last_eat to val, otherwise
+ * gets the current time_last_eat.
+ * @param val The value to set time_last_eat to if mode is non-zero.
+ * @return The last eating time if mode is zero, otherwise the new value set.
+ */
 unsigned long	gs_time_last_eat(t_philo *philo, int mode, unsigned long val)
 {
 	unsigned long	ret;
@@ -31,6 +40,15 @@ unsigned long	gs_time_last_eat(t_philo *philo, int mode, unsigned long val)
 	}
 }
 
+/**
+ * Gets or sets the number of times a philosopher has eaten.
+ * 
+ * @param philo Pointer to the philosopher structure.
+ * @param mode If SET, sets num_times_eaten to val;
+ * if ADD, adds val to num_times_eaten; otherwise, gets num_times_eaten.
+ * @param val The value to set or add to num_times_eaten.
+ * @return The current or updated number of times eaten.
+ */
 size_t	gs_num_times_eaten(t_philo *philo, int mode, size_t val)
 {
 	size_t	ret;
@@ -57,6 +75,12 @@ size_t	gs_num_times_eaten(t_philo *philo, int mode, size_t val)
 	}
 }
 
+/**
+ * Gets the number of times philosophers must eat.
+ * 
+ * @param pdata Pointer to the program data structure.
+ * @return The number of times philosophers must eat.
+ */
 int	get_num_times_eat(t_pdata *pdata)
 {
 	int	ret;
@@ -67,6 +91,15 @@ int	get_num_times_eat(t_pdata *pdata)
 	return (ret);
 }
 
+/**
+ * Gets or sets the dinner active status.
+ * 
+ * @param pdata Pointer to the program data structure.
+ * @param mode If non-zero, sets dinner_active to val, otherwise
+ * gets the current dinner_active status.
+ * @param val The value to set dinner_active to if mode is non-zero.
+ * @return The current or updated dinner active status.
+ */
 int	gs_dinner_active(t_pdata *pdata, int mode, int val)
 {
 	int	ret;
@@ -86,6 +119,12 @@ int	gs_dinner_active(t_pdata *pdata, int mode, int val)
 	}
 }
 
+/**
+ * Gets the start time of the simulation.
+ * 
+ * @param pdata Pointer to the program data structure.
+ * @return The start time of the simulation.
+ */
 unsigned long	get_start_time(t_pdata *pdata)
 {
 	unsigned long	ret;

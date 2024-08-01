@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var_pdata.c                                        :+:      :+:    :+:   */
+/*   var_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 05:17:38 by julian            #+#    #+#             */
-/*   Updated: 2024/07/30 16:49:33 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:35:34 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Gets the time to die value from the program data structure.
+ * 
+ * @param pdata Pointer to the program data structure.
+ * @return The time to die value.
+ */
 size_t	get_time_2_die(t_pdata *pdata)
 {
 	size_t	ret;
@@ -22,6 +28,12 @@ size_t	get_time_2_die(t_pdata *pdata)
 	return (ret);
 }
 
+/**
+ * Gets the time to eat value from the program data structure.
+ * 
+ * @param pdata Pointer to the program data structure.
+ * @return The time to eat value.
+ */
 size_t	get_time_2_eat(t_pdata *pdata)
 {
 	size_t	ret;
@@ -32,6 +44,12 @@ size_t	get_time_2_eat(t_pdata *pdata)
 	return (ret);
 }
 
+/**
+ * Gets the time to sleep value from the program data structure.
+ * 
+ * @param pdata Pointer to the program data structure.
+ * @return The time to sleep value.
+ */
 size_t	get_time_2_sleep(t_pdata *pdata)
 {
 	size_t	ret;
@@ -42,6 +60,12 @@ size_t	get_time_2_sleep(t_pdata *pdata)
 	return (ret);
 }
 
+/**
+ * Gets the number of philosophers from the program data structure.
+ * 
+ * @param pdata Pointer to the program data structure.
+ * @return The number of philosophers.
+ */
 int	get_num_philos(t_pdata *pdata)
 {
 	int	ret;
