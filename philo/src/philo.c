@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/08/01 12:42:21 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/02 00:38:55 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_philo(pdata))
 		return (philo_abort(1, NULL, pdata));
-	if (pdata->num_philos == 1)
-		philo_1(pdata);
-	else
-		pcreate(pdata);
+	if (pdata->num_times_eat > 0 || pdata->num_times_eat == -1)
+	{
+		if (pdata->num_philos == 1)
+			philo_1(pdata);
+		else
+			pcreate(pdata);
+	}
 	if (pdata)
 		philo_exit(pdata);
 	return (0);
