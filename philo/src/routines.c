@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   routines.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:31:17 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/07/30 17:28:08 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:47:58 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Creates and starts philosopher threads and a monitor thread.
+ * 
+ * @param pdata Pointer to the program data structure containing
+ * philo and monitor information.
+ */
 void	pcreate(t_pdata *pdata)
 {
 	int	id;
@@ -34,6 +40,12 @@ void	pcreate(t_pdata *pdata)
 	pthread_join(pdata->monitor, NULL);
 }
 
+/**
+ * Routine executed by each philosopher thread.
+ * 
+ * @param arg Pointer to the philosopher structure.
+ * @return NULL upon completion.
+ */
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
@@ -53,6 +65,11 @@ void	*philo_routine(void *arg)
 	return (NULL);
 }
 
+/**
+ * Simulates a philosopher eating.
+ * 
+ * @param philo Pointer to the philosopher structure.
+ */
 void	philo_eat(t_philo *philo)
 {
 	if (!check_alive(philo))
@@ -80,12 +97,22 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->fork_2t_right);
 }
 
+/**
+ * Simulates a philosopher sleeping.
+ * 
+ * @param philo Pointer to the philosopher structure.
+ */
 void	philo_sleep(t_philo *philo)
 {
 	output_status(philo, SLEEP);
 	philo_wait(get_time_2_sleep(philo->pdata1));
 }
 
+/**
+ * Simulates a philosopher thinking.
+ * 
+ * @param philo Pointer to the philosopher structure.
+ */
 void	philo_think(t_philo *philo)
 {
 	output_status(philo, THINK);
