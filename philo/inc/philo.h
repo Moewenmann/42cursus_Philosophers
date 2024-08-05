@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:35 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/08/02 00:26:50 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/05 16:50:15 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,6 @@ struct s_pdata
 struct s_protect
 {
 	pthread_mutex_t	active;
-	pthread_mutex_t	start_time;
-	pthread_mutex_t	time_2_die;
-	pthread_mutex_t	time_2_eat;
-	pthread_mutex_t	time_2_sleep;
-	pthread_mutex_t	num_times_eat;
-	pthread_mutex_t	num_philos;
 	pthread_mutex_t	output;
 };
 

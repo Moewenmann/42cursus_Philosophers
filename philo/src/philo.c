@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:37:27 by jmuhlber          #+#    #+#             */
-/*   Updated: 2024/08/02 00:38:55 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/05 16:50:04 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,6 @@ static int	philo_exit(t_pdata *pdata)
 		id += 1;
 	}
 	pthread_mutex_destroy(&pdata->protect->active);
-	pthread_mutex_destroy(&pdata->protect->start_time);
-	pthread_mutex_destroy(&pdata->protect->time_2_die);
-	pthread_mutex_destroy(&pdata->protect->time_2_eat);
-	pthread_mutex_destroy(&pdata->protect->time_2_sleep);
-	pthread_mutex_destroy(&pdata->protect->num_times_eat);
-	pthread_mutex_destroy(&pdata->protect->num_philos);
 	pthread_mutex_destroy(&pdata->protect->output);
 	free(pdata->philos);
 	free(pdata->protect);

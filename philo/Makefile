@@ -6,7 +6,7 @@
 #    By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 11:06:29 by julian            #+#    #+#              #
-#    Updated: 2024/08/05 16:39:13 by jmuhlber         ###   ########.fr        #
+#    Updated: 2024/08/05 17:02:25 by jmuhlber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC		= philo.c \
 			init.c \
 			routines.c \
 			monitor.c \
+			monitor2.c \
 			time.c \
 			var_a.c \
 			var_b.c \

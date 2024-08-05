@@ -6,7 +6,7 @@
 /*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:19:10 by julian            #+#    #+#             */
-/*   Updated: 2024/08/05 16:35:31 by jmuhlber         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:09:11 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*monitor(void *arg)
 	while (gs_dinner_active(pdata, GET, 0))
 	{
 		id = 0;
+		check_all_alive(pdata);
 		if (get_num_times_eat(pdata) > 0)
 		{
 			while (id < get_num_philos(pdata))
@@ -41,7 +42,7 @@ void	*monitor(void *arg)
 			if (id == get_num_philos(pdata))
 				gs_dinner_active(pdata, SET, 0);
 		}
-		usleep(TICK / 2);
+		usleep(TICK);
 	}
 	return (NULL);
 }
