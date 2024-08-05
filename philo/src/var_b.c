@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_b.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmuhlber <jmuhlber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 05:17:47 by julian            #+#    #+#             */
-/*   Updated: 2024/08/01 13:39:26 by julian           ###   ########.fr       */
+/*   Updated: 2024/08/05 16:33:46 by jmuhlber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,7 @@ int	get_num_times_eat(t_pdata *pdata)
 {
 	int	ret;
 
-	pthread_mutex_lock(&pdata->protect->num_times_eat);
 	ret = pdata->num_times_eat;
-	pthread_mutex_unlock(&pdata->protect->num_times_eat);
 	return (ret);
 }
 
@@ -129,8 +127,6 @@ unsigned long	get_start_time(t_pdata *pdata)
 {
 	unsigned long	ret;
 
-	pthread_mutex_lock(&pdata->protect->start_time);
 	ret = pdata->start_time;
-	pthread_mutex_unlock(&pdata->protect->start_time);
 	return (ret);
 }
